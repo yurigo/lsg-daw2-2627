@@ -1,4 +1,5 @@
 class Pelota{
+    // Keep position, diameter, velocity, and color together in one object.
     constructor(x,y,d,vx,vy,epilepsia = true){
         this.x = x;
         this.y = y;
@@ -18,6 +19,7 @@ class Pelota{
         }
     }
 
+    // Render this object's circle using p5.js drawing functions.
     draw(){
 
         fill(this.colorR, this.colorG, this.colorB)
@@ -29,6 +31,7 @@ class Pelota{
         )
     }
 
+    // Reverse velocity at the canvas edges, then advance by one frame's velocity.
     update(){
 
         if (this.x + this.r > width || this.x - this.r < 0){
