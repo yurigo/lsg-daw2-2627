@@ -1,7 +1,9 @@
 const pelotas = [];
+// Number of balls created during setup; mouse clicks can add more.
 const MAX = 1;
 
 
+// p5 calls setup once to create the canvas and initial ball(s).
 function setup(){
     createCanvas(600,600);
     // noStroke();
@@ -20,11 +22,13 @@ function setup(){
 }
 
 
+// p5 calls draw repeatedly; drawing and position updates create the animation.
 function draw(){
   background(150);
 
   
 
+  // forEach provides the ball, its index, and the source array to this callback.
   pelotas.forEach( (p , i, arr) => {
     p.draw();
 
@@ -39,6 +43,7 @@ function draw(){
 
   })
 
+  // Advance every ball after drawing its current position.
   for(p of pelotas){
     p.update();
   }
@@ -51,6 +56,7 @@ function draw(){
 
 }
 
+// A click adds a newly constructed ball to the shared array.
 function mouseClicked(){
     const nueva = new Pelota(
         width / 2,

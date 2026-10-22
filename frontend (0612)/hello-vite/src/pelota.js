@@ -1,4 +1,5 @@
 export default class Pelota {
+    // Store the p5 instance so methods can use instance-mode drawing and random APIs.
     constructor(x, y, d, vx, vy, epilepsia = true, p5) {
         this.x = x;
         this.y = y;
@@ -20,6 +21,7 @@ export default class Pelota {
         }
     }
 
+    // Draw the ball at its current coordinates.
     draw() {
 
         this.p5.fill(this.colorR, this.colorG, this.colorB)
@@ -31,6 +33,7 @@ export default class Pelota {
         )
     }
 
+    // Bounce from canvas boundaries and move once by the velocity vector.
     update() {
 
         if (this.x + this.r > this.p5.width || this.x - this.r < 0) {
