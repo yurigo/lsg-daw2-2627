@@ -1,0 +1,21 @@
+{
+  "name": "vite-p5js-instance-mode-example",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@eslint/css": "^2.0.0",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "vite": "^8.3.0"
+  },
+  "dependencies": {
+    "p5": "^2.3.4"
+  }
+}
