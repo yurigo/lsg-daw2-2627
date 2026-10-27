@@ -4,10 +4,12 @@ import './style.css'
 import Pelota from "./pelota.js";
 import p5 from 'p5';
 
+// Instance mode passes the p5 object explicitly instead of using global functions.
 function sketch(p) {
   const pelotas = [];
   const MAX = 1;
 
+  // p5 invokes setup once; create the canvas and seed the animation here.
   p.setup = () => {
     p.createCanvas(600, 600);
     // noStroke();
@@ -25,11 +27,13 @@ function sketch(p) {
     }
   };
 
+  // p5 invokes draw repeatedly; each frame is cleared, rendered, then updated.
   p.draw = function draw() {
     p.background(150);
 
 
 
+    // The callback receives each ball, index, and source array.
     pelotas.forEach((pelota, i, arr) => {
       pelota.draw();
 
@@ -44,6 +48,7 @@ function sketch(p) {
 
     })
 
+    // Move every ball for the next animation frame.
     for (const pelota of pelotas) {
       pelota.update();
     }
@@ -57,6 +62,7 @@ function sketch(p) {
   }
 
 
+  // Mouse clicks add another ball; p5 supplies the mouse position and random().
   p.mouseClicked = () => {
     const nueva = new Pelota(
       p.width / 2,
@@ -73,4 +79,5 @@ function sketch(p) {
 
 }
 
+// Attach the sketch's canvas to the app element in index.html.
 new p5(sketch, document.querySelector("#app"))

@@ -6,6 +6,7 @@ import express from 'express';
 
 const router = express.Router();
 
+// This copied router uses the users array despite its /restaurants URL prefix.
 // router.get('/events', (req, res) => {
 //   res.send('events');
 // });
@@ -20,7 +21,6 @@ router.get("/", (request, response) => {
     response.json(restaurants)
 })
 
-
 router.get("/:ID", (request, response) => {
 
     const id = Number(request.params.ID);
@@ -34,6 +34,7 @@ router.get("/:ID", (request, response) => {
     response.json(restaurant);
 })
 
+// Append request fields with a generated ID and report a successful creation.
 router.post("/", (req, res) => {
     const newRestaurant = req.body;
 
@@ -47,6 +48,7 @@ router.post("/", (req, res) => {
     res.status(201).json({ inserted: newID })
 });
 
+// Change the matched entry's name; missing IDs are not guarded in this example.
 router.put("/:ID", (req, res) => {
 
     const dataToChange = req.body;
@@ -61,6 +63,7 @@ router.put("/:ID", (req, res) => {
     res.status(200).json({ changed: foundElement });
 });
 
+// Remove an entry by its index in the shared array.
 router.delete("/:ID", (req, res) => {
 
     const id = Number(req.params.ID);
@@ -106,4 +109,3 @@ router.get("/:ID/menus", (req, res) => {
 
 
 export default router;
-

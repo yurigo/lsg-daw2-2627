@@ -4,6 +4,8 @@ import express from 'express';
 
 const router = express.Router();
 
+// Return all records as JSON for GET /users.
+
 // router.get('/events', (req, res) => {
 //   res.send('events');
 // });
@@ -27,6 +29,7 @@ router.get("/", function (request, response) {
 // router.get("/users/2", (request, response) => {
 //     response.json(users[1]);
 // })
+// Convert the URL parameter to a number and find the matching record.
 router.get("/:ID", (request, response) => {
 
     const id = Number(request.params.ID);
@@ -41,6 +44,7 @@ router.get("/:ID", (request, response) => {
     response.json(user);
 })
 
+// Add the submitted fields and assign an ID, then return HTTP 201.
 router.post("/", (req, res) => {
     const newUser = req.body;
 
@@ -54,6 +58,8 @@ router.post("/", (req, res) => {
     res.status(201).json({ inserted: newID })
 });
 
+// Update the matched record's name from the submitted JSON body.
+// This teaching example does not yet handle a missing ID.
 router.put("/:ID", (req, res) => {
 
     const dataToChange = req.body;
@@ -81,6 +87,7 @@ router.put("/:ID", (req, res) => {
     res.status(200).json({ changed: foundElement });
 });
 
+// Find the array position, then remove exactly one matching record.
 router.delete("/:ID", (req, res) => {
 
     const id = Number(req.params.ID);
@@ -101,4 +108,3 @@ router.delete("/:ID", (req, res) => {
 
 
 export default router;
-
