@@ -9,6 +9,13 @@ const router = express.Router();
 // });
 
 
+function miPrimerMiddleware(request, response, next) {
+    console.log("algo");
+    next();
+}
+
+router.use(miPrimerMiddleware)
+
 router.get("/", function (request, response) {
     //request.
     response.json(users)

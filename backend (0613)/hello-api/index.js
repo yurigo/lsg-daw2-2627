@@ -2,14 +2,25 @@
 import express from "express";
 import usersRouter from "./routes/users.route.js";
 import restaurantsRouter from "./routes/restaurants.route.js";
+import { validarCabeceras } from "./middlewares/validateHeaders.middleware.js";
 
 const app = express()
 const port = 3000
 
 app.use(express.json());
 
-app.use("/users", usersRouter);
-app.use("/restaurants", restaurantsRouter);
+
+function logging(req, res, next) {
+    console.log(`${req.method}: ${req.originalUrl}`);
+    next();
+}
+
+// app.use(validarCabeceras) esto seria para todos
+
+
+app.use("/api/v1/users", usersRouter);
+app.use(logging);
+app.use("/api/v1/restaurants", validarCabeceras, restaurantsRouter);
 
 
 app.listen(port, () => {

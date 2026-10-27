@@ -1,4 +1,6 @@
-import { users } from "../users.js";
+import { restaurants } from "../restaurant.js";
+import { menus } from "../menus.js";
+// import { validarCabeceras } from "../middlewares/validateHeaders.middleware.js";
 
 import express from 'express';
 
@@ -10,38 +12,35 @@ const router = express.Router();
 
 
 
-router.get("/", function (request, response) {
+// router.use(validarCabeceras)
+
+
+router.get("/", (request, response) => {
     //request.
-    response.json(users)
+    response.json(restaurants)
 })
 
-// router.get("/users/1", (request, response) => {
-//     response.json(users[0]);
-// })
-// router.get("/users/2", (request, response) => {
-//     response.json(users[1]);
-// })
+
 router.get("/:ID", (request, response) => {
 
     const id = Number(request.params.ID);
 
-    const user = users.find((elementoVisitado) => {
-        //return true;
+    const restaurant = restaurants.find((elementoVisitado) => {
         return elementoVisitado.id === id;
     })
 
-    if (!user) return response.status(404).json({ message: "Usuario no encontrado" })
+    if (!restaurant) return response.status(404).json({ message: "restaurante no encontrado" })
 
-    response.json(user);
+    response.json(restaurant);
 })
 
 router.post("/", (req, res) => {
-    const newUser = req.body;
+    const newRestaurant = req.body;
 
-    const newID = users.length + 1;
+    const newID = restaurants.length + 1;
 
-    users.push({
-        ...newUser,
+    restaurants.push({
+        ...newRestaurant,
         id: newID,
     });
 
@@ -53,22 +52,9 @@ router.put("/:ID", (req, res) => {
     const dataToChange = req.body;
     const idToFind = Number(req.params.ID);
 
-    const foundElement = users.find((elem) => {
+    const foundElement = restaurants.find((elem) => {
         return elem.id === idToFind;
     })
-
-    /*
-    {
-        id: 1,
-        name: "Alice"
-    },
-    */
-
-    /*
-    {
-        name: "Menganito"
-    }
-    */
 
     foundElement.name = dataToChange.name;
 
@@ -79,19 +65,44 @@ router.delete("/:ID", (req, res) => {
 
     const id = Number(req.params.ID);
 
-    const userIndex = users.findIndex((elementoVisitado) => {
+    const restaurantIndex = restaurants.findIndex((elementoVisitado) => {
         //return true;
         return elementoVisitado.id === id;
     })
 
-    if (userIndex === -1) {
+    if (restaurantIndex === -1) {
         return res.status(404).json({ "error": "id not found" })
     }
 
-    const deleted = users.splice(userIndex, 1);
+    const deleted = restaurants.splice(restaurantIndex, 1);
 
-    res.json({ "message": "usuario borrado!!" });
+    res.json({ "message": "restaurante borrado!!" });
 });
+
+
+router.get("/:ID/menus", (req, res) => {
+    const restaurantID = Number(req.params.ID);
+
+
+    const restaurant = restaurants.find((elementoVisitado) => {
+        return elementoVisitado.id === restaurantID;
+    })
+
+    if (!restaurant) return response.status(404).json({ message: "restaurante no encontrado" })
+
+    // restaurant.menus    
+
+    // const menusDelRestaurante = menus.filter(m => {
+    //     return restaurant.menus.includes(m.id);
+    // })
+
+    const menusDelRestaurante = restaurant.menus.map(m => {
+        return menus.find((elem) => elem.id === m)
+    })
+
+
+    res.json(menusDelRestaurante)
+})
 
 
 export default router;
