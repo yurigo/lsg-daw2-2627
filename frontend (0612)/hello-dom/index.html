@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script type="module" src="/src/main.js"></script>
+  <title>hello-dom</title>
+</head>
+
+<body>
+  <div class="bola"></div>
+
+  <header>
+
+    <form id="formularioDeArticulos">
+      <!-- valida pero fea de cojones... -->
+      <label>titulo
+        <input id="inputTitulo" name="titulo" type="text" placeholder="introduce el titulo" required>
+      </label>
+
+      <label for="inputContenido">contenido</label>
+      <input id="inputContenido" name="contenido" type="text">
+
+      <button type="submit">click!!</button>
+    </form>
+
+
+  </header>
+  <main>
+    <section class="cards">
+      <article id="lorem">
+        <h2>Titulo</h2>
+        <p>contenido</p>
+      </article>
+      <article id="lorem2">
+        <h2>Titulo</h2>
+        <p>contenido</p>
+      </article>
+    </section>
+  </main>
+  <footer>
+
+  </footer>
+</body>
+
+</html>
