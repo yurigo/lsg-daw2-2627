@@ -10,11 +10,14 @@ each folder before running or modifying its code.
 | Project | Main topic | Guide |
 | --- | --- | --- |
 | `frontend (0612)/hello-arrays` | Arrays, objects, callbacks, and destructuring | [Arrays guide](frontend%20%280612%29/hello-arrays/README.md) |
-| `frontend (0612)/hello-functions` | Functions, parameters, scope, and closures | [Functions guide](frontend%20%280612%29/hello-functions/README.md) |
+| `frontend (0612)/hello-dom` | DOM selection, forms, events, and element creation with Vite | — |
 | `frontend (0612)/hello-clases` | Classes and a p5.js animation | [Classes guide](frontend%20%280612%29/hello-clases/README.md) |
+| `frontend (0612)/hello-functions` | Functions, parameters, scope, and closures | [Functions guide](frontend%20%280612%29/hello-functions/README.md) |
 | `frontend (0612)/hello-vite` | Vite modules and p5.js instance mode | [Vite guide](frontend%20%280612%29/hello-vite/README.md) |
+| `frontend (0612)/hello-astro` | Astro pages, layouts, and components | [Astro guide](frontend%20%280612%29/hello-astro/README.md) |
 | `backend (0613)/hello-world-node` | Running JavaScript with Node.js | [Node guide](backend%20%280613%29/hello-world-node/README.md) |
-| `backend (0613)/hello-api` | Express routers and REST-style HTTP endpoints | [API guide](backend%20%280613%29/hello-api/README.md) |
+| `backend (0613)/hello-api-full-middleware` | Express routers, middleware, and HTTP endpoints (JavaScript) | [API guide](backend%20%280613%29/hello-api-full-middleware/README.md) |
+| `backend (0613)/hello-api-full-middleware-ts` | Express routers, middleware, and HTTP endpoints (TypeScript) | [API guide](backend%20%280613%29/hello-api-full-middleware-ts/README.md) |
 
 ## Running the examples
 
@@ -22,14 +25,20 @@ Each folder is a separate project; run commands from that project's directory.
 For package-managed projects, install the declared dependencies with `pnpm
 install` before using their scripts.
 
-- The `hello-arrays` and `hello-vite` browser projects use Vite. Run `pnpm dev`
-  and open the local URL printed by Vite. Their `pnpm build` script creates a
+- `hello-arrays`, `hello-dom`, and `hello-vite` are Vite browser projects. Run
+  `pnpm dev` and open the local URL printed by Vite; `pnpm build` creates a
   production build.
+- `hello-astro` is an Astro site. Run `pnpm dev` to start its development
+  server or `pnpm build` to build it. It requires Node.js 22.23.4 or newer and
+  fetches Pokémon data from the PokeAPI for its home page.
 - `hello-functions` and `hello-clases` are static examples. Open their
   `index.html` files in a browser; `hello-clases` loads p5.js from a CDN and
   therefore needs network access.
-- `hello-world-node` and `hello-api` run with Node.js. Use `pnpm start`; the API
-  listens on port 3000.
+- `hello-world-node` runs with Node.js; use `pnpm start`.
+- Both `hello-api-full-middleware` variants are Express APIs that listen on
+  port 3000. Run `pnpm dev` (or `pnpm start`) in the JavaScript project. In the
+  TypeScript project, run `pnpm dev` for development, or run `pnpm build`
+  before `pnpm start`.
 
 ## How to use the guides
 
